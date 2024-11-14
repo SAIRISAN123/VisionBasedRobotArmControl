@@ -120,11 +120,9 @@ while cap.isOpened():
         cv2.putText(frame, "Select", (button_left + 5, button_top + 20),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 1, cv2.LINE_AA)
 
+
     # Prepare JSON data
-    json_data = {
-        "sliders": [{"index": i + 1, "value": slider_values[i]} for i in range(num_sliders)],
-        "buttons": [{"index": i + 1, "selected": button_states[i]} for i in range(num_sliders)]
-    }
+    json_data = slider_values[:num_sliders]
 
     # Publish JSON data to MQTT topic
     mqtt_client.publish(mqtt_topic, json.dumps(json_data))

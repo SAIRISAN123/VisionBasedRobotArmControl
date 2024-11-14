@@ -1,19 +1,44 @@
 #include <WiFi.h>
 #include <PubSubClient.h>
-#include <ArduinoJson.h>
 
-const char* ssid = "Nov";
-const char* password = "sai012345";
+const char* ssid = "Nov";                   // Your WiFi SSID
+const char* password = "sai012345";         // Your WiFi Password
 const char* mqtt_server = "test.mosquitto.org";
 const int mqtt_port = 1883;
 const char* mqtt_topic = "slider_values";
+
+
+// this sample code provided by www.programmingboss.com
+#define RXp2 16
+#define TXp2 17
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 WiFiClient espClient;
 PubSubClient client(espClient);
 
 void setup() {
-  Serial.begin(115200);                // Serial for debugging
-  Serial1.begin(9600, SERIAL_8N1, -1, 17); // Serial1 for TX (GPIO 17 on ESP32 to Arduino RX)
+  Serial.begin(115200);  // Start Serial communication with the computer
+  Serial2.begin(9600, SERIAL_8N1, RXp2, TXp2);
 
   // Connect to Wi-Fi
   WiFi.begin(ssid, password);
@@ -33,39 +58,28 @@ void setup() {
 }
 
 void callback(char* topic, byte* payload, unsigned int length) {
-  // Parse JSON payload
-  StaticJsonDocument<256> jsonDoc;
-  DeserializationError error = deserializeJson(jsonDoc, payload, length);
-  
-  if (error) {
-    Serial.print("JSON Parsing failed: ");
-    Serial.println(error.c_str());
-    return;
+  String message;
+  for (int i = 0; i < length; i++) {
+    message += (char)payload[i];
   }
 
-  // Extract slider values
-  int sliderValues[6];
-  for (int i = 0; i < 6; i++) {
-    sliderValues[i] = jsonDoc["sliders"][i]["value"].as<int>();
-  }
+  // Print the received message for debugging
+  Serial.print("Message received: ");
+  Serial.println(message);
 
-  // Send values to Arduino over Serial1
-  for (int i = 0; i < 6; i++) {
-    Serial1.print(sliderValues[i]);
-    if (i < 5) Serial1.print(","); // Comma-separated values
-  }
-  Serial1.println(); // Newline indicates end of transmission
+  // Send the message to the Arduino via UART (Serial2)
+  sendToArduino(message);
+}
 
-  // Print for debugging
-  Serial.print("Sent values to Arduino: ");
-  for (int i = 0; i < 6; i++) {
-    Serial.print(sliderValues[i]);
-    if (i < 5) Serial.print(", ");
-  }
-  Serial.println();
+void sendToArduino(String message) {
+  // Send the message as a string via UART (Serial2) to the Arduino
+  Serial2.println(message);
+  delay(10);
+
 }
 
 void reconnect() {
+  // Attempt to connect to MQTT broker
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
     if (client.connect("ESP32_DAC")) {
@@ -81,6 +95,7 @@ void reconnect() {
 }
 
 void loop() {
+  // Reconnect to MQTT if connection is lost
   if (!client.connected()) {
     reconnect();
   }

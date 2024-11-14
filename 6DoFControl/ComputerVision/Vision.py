@@ -122,7 +122,9 @@ while cap.isOpened():
 
 
     # Prepare JSON data
-    json_data = slider_values[:num_sliders]
+    json_data = {}
+    for i in range(num_sliders):
+        json_data[f'val{i+1}'] = slider_values[i]
 
     # Publish JSON data to MQTT topic
     mqtt_client.publish(mqtt_topic, json.dumps(json_data))
