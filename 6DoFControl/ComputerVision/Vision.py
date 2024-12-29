@@ -4,6 +4,8 @@ import mediapipe as mp
 import math
 import json
 import paho.mqtt.client as mqtt
+import sys, os
+
 
 mp_hands = mp.solutions.hands
 hands = mp_hands.Hands(min_detection_confidence=0.7, min_tracking_confidence=0.7)
@@ -122,9 +124,10 @@ while cap.isOpened():
     for i in range(num_sliders):
         json_data[f'val{i+1}'] = slider_values[i]
 
+
     mqtt_client.publish(mqtt_topic, json.dumps(json_data))
 
-    data= json_data
+
 
     cv2.imshow("Multiple Sliders and Buttons", frame)
     

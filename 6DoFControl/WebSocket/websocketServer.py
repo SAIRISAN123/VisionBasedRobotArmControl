@@ -1,10 +1,16 @@
 import asyncio
 import json
 import threading
+import os
+import sys
 
 import websockets
 
-from ComputerVision.Vision import json_data
+# Add the ComputerVision folder to the system path
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'ComputerVision'))
+
+# Import the json_data from Vision
+from Vision import json_data
 
 
 clients = {}
@@ -49,7 +55,7 @@ def send_slider_data_through_websocket(data):
     data = json.dumps(data)
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
-    loop.run_until_complete(send_to_all_clients(data, "/slider"))
+    loop.run_until_complete(send_to_all_clients(data, "/sliders"))
 
 
 async def send_to_all_clients(data, path):
