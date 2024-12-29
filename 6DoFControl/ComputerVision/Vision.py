@@ -124,6 +124,8 @@ while cap.isOpened():
 
     mqtt_client.publish(mqtt_topic, json.dumps(json_data))
 
+    data= json_data
+
     cv2.imshow("Multiple Sliders and Buttons", frame)
     
     if cv2.waitKey(1) & 0xFF == 27:
