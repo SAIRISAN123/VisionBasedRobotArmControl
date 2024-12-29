@@ -5,12 +5,11 @@ import math
 import json
 import paho.mqtt.client as mqtt
 
-# Initialize MediaPipe Hands module
 mp_hands = mp.solutions.hands
 hands = mp_hands.Hands(min_detection_confidence=0.7, min_tracking_confidence=0.7)
 mp_drawing = mp.solutions.drawing_utils
 
-# Function to calculate distance between two points
+
 def calculate_distance(p1, p2):
     return math.sqrt((p2[0] - p1[0])**2 + (p2[1] - p1[1])**2)
 
@@ -36,18 +35,16 @@ slider_values = [50] * num_sliders
 button_states = [False] * num_sliders
 button_colors = [(0, 0, 255)] * num_sliders
 
-# MQTT Configuration
-mqtt_broker = "broker.hivemq.com"  # Replace with your MQTT broker address
-mqtt_port = 1883
-mqtt_topic = "slider_values"  # Replace with your MQTT topic
-mqtt_client = mqtt.Client()
 
-# Connect to the MQTT broker
+mqtt_broker = "broker.hivemq.com"  
+mqtt_port = 1883
+mqtt_topic = "slider_values"  
+mqtt_client = mqtt.Client()
 mqtt_client.connect(mqtt_broker, mqtt_port)
 
 
 
-# Function to reset all buttons except the one selected
+
 def reset_button_states(selected_index):
     global button_states, button_colors
     for i in range(num_sliders):
@@ -64,10 +61,8 @@ while cap.isOpened():
     if not ret:
         break
     
-    # Flip the frame horizontally for a more natural interaction
     frame = cv2.flip(frame, 1)
     
-    # Convert the frame to RGB for MediaPipe
     rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     results = hands.process(rgb_frame)
     
@@ -127,16 +122,13 @@ while cap.isOpened():
     for i in range(num_sliders):
         json_data[f'val{i+1}'] = slider_values[i]
 
-    # Publish JSON data to MQTT topic
     mqtt_client.publish(mqtt_topic, json.dumps(json_data))
 
-    # Show the frame
     cv2.imshow("Multiple Sliders and Buttons", frame)
     
     if cv2.waitKey(1) & 0xFF == 27:
         break
 
-# Release resources
 cap.release()
 cv2.destroyAllWindows()
 mqtt_client.disconnect()
