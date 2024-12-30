@@ -1,77 +1,39 @@
 import asyncio
-import json
-import threading
-import os
-import sys
-
 import websockets
+import json
+import sys
+import os
 
-# Add the ComputerVision folder to the system path
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'ComputerVision'))
-
-# Import the json_data from Vision
-from Vision import json_data
-
-
-clients = {}
-
-data = {}
-data = json_data
+Example = {'val1': 50, 'val2': 75, 'val3': 25}
 
 
 
 
-async def websocket_server(websocket, path):
-    if path not in clients:
-        clients[path] = set()
-    clients[path].add(websocket)
-    print(f"Client connected to {path}")
+
+
+async def handle_connection(websocket):
+    print("Client connected")
     try:
-        async for message in websocket:
-            pass
-    finally:
-        clients[path].remove(websocket)
-        if not clients[path]:
-            del clients[path]
+        while True:
+
+            data_to_send = json.dumps(Example)
+            await websocket.send(data_to_send)
+            print(f"Sent data: {data_to_send}")
+            # try:
+            #     message = await asyncio.wait_for(websocket.recv(), timeout=5)
+            #     print(f"Received from client: {message}")
+            # except asyncio.TimeoutError:
+            #     print("No message received from the client within the timeout period.")
+            await asyncio.sleep(1)
+
+    except websockets.ConnectionClosed as e:
+            print(f"Client disconnected: {e}")
+
+async def ConnectwebSocket():
+    server = await websockets.serve(handle_connection, "localhost", 8765)
+    print("WebSocket server is running on ws://localhost:8765")
+    await server.wait_closed()
 
 
-def run_websocket_server():
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
-    start_server = websockets.serve(websocket_server, "localhost", 8765)
-    loop.run_until_complete(start_server)
-    loop.run_forever()
-
-
-def send_through_websocket(data):
-    data = json.dumps(data)
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
-    loop.run_until_complete(send_to_all_clients(data, "/"))
-
-
-
-def send_slider_data_through_websocket(data):
-    data = json.dumps(data)
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
-    loop.run_until_complete(send_to_all_clients(data, "/sliders"))
-
-
-async def send_to_all_clients(data, path):
-    if path in clients and clients[path]:
-        await asyncio.gather(*(client.send(data) for client in clients[path]))
-        print(f"Sent data to {len(clients[path])} clients")
-
-
-# Start the WebSocket server in a thread
-server_thread = threading.Thread(target=run_websocket_server)
-server_thread.daemon = True
-server_thread.start()
-print("WebSocket server started")
-
-
-while True:
-    send_slider_data_through_websocket(data)
-    print("Data sent")
-    asyncio.sleep(1)
+# if __name__ == "__main__":
+#     asyncio.run(ConnectwebSocket())

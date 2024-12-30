@@ -5,6 +5,8 @@ import math
 import json
 import paho.mqtt.client as mqtt
 
+
+    
 mp_hands = mp.solutions.hands
 hands = mp_hands.Hands(min_detection_confidence=0.7, min_tracking_confidence=0.7)
 mp_drawing = mp.solutions.drawing_utils
@@ -122,7 +124,10 @@ while cap.isOpened():
     for i in range(num_sliders):
         json_data[f'val{i+1}'] = slider_values[i]
 
+
     mqtt_client.publish(mqtt_topic, json.dumps(json_data))
+
+
 
     cv2.imshow("Multiple Sliders and Buttons", frame)
     
@@ -132,3 +137,5 @@ while cap.isOpened():
 cap.release()
 cv2.destroyAllWindows()
 mqtt_client.disconnect()
+
+

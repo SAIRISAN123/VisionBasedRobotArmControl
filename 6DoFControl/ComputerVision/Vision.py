@@ -1,12 +1,13 @@
-
 import cv2
 import mediapipe as mp
 import math
 import json
 import paho.mqtt.client as mqtt
-import sys, os
 
 
+
+
+    
 mp_hands = mp.solutions.hands
 hands = mp_hands.Hands(min_detection_confidence=0.7, min_tracking_confidence=0.7)
 mp_drawing = mp.solutions.drawing_utils
@@ -128,12 +129,21 @@ while cap.isOpened():
     mqtt_client.publish(mqtt_topic, json.dumps(json_data))
 
 
+    def returnData():
+        print(json_data)
+        return json_data
+
 
     cv2.imshow("Multiple Sliders and Buttons", frame)
     
     if cv2.waitKey(1) & 0xFF == 27:
         break
 
+
+
+
 cap.release()
 cv2.destroyAllWindows()
 mqtt_client.disconnect()
+
+
