@@ -8,7 +8,7 @@ async def send_json_data(connection, json_file_path):
     last_modified_time = os.path.getmtime(json_file_path)
     
     while True:
-        await asyncio.sleep(1)  
+        await asyncio.sleep(0.6)  
         
         current_modified_time = os.path.getmtime(json_file_path)
         if current_modified_time != last_modified_time:

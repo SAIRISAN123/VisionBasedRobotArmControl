@@ -4,8 +4,8 @@ import json
 
 async def communicate():
     uri = "ws://localhost:8765"  
-    try:
-        async with websockets.connect(uri) as websocket:
+
+    async with websockets.connect(uri) as websocket:
             print("Connected to the server")
             while True:
                 # Receive data from the server
@@ -19,10 +19,7 @@ async def communicate():
                 # await websocket.send(response)
                 # print(f"Sent to server: {response}")
 
-    except websockets.ConnectionClosed as e:
-        print(f"Connection closed: {e}")
-    except Exception as e:
-        print(f"An error occurred: {e}")
+
 
 if __name__ == "__main__":
     asyncio.run(communicate())
