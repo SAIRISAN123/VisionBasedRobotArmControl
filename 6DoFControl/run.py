@@ -1,7 +1,7 @@
 import subprocess
 
 app = [
-    "6DoFControl/ComputerVision/mqttSubsciption.py",          
+    "6DoFControl/Server/mqttSubsciption.py",          
     "6DoFControl/WebSocket/websocketServer.py",    ]
 processes = []
 
