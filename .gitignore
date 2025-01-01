@@ -101,4 +101,4 @@ desktop.ini
 *.lock
 
 # Temporary or shared data files
-/shared_data.json
+shared_data.json
