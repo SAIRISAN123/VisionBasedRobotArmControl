@@ -1,3 +1,4 @@
+
 import cv2
 import mediapipe as mp
 import math
@@ -6,6 +7,8 @@ import paho.mqtt.client as mqtt
 
 
 
+
+json_data = {}
 
     
 mp_hands = mp.solutions.hands
@@ -16,10 +19,10 @@ mp_drawing = mp.solutions.drawing_utils
 def calculate_distance(p1, p2):
     return math.sqrt((p2[0] - p1[0])**2 + (p2[1] - p1[1])**2)
 
-# Open webcam
+
 cap = cv2.VideoCapture(0)
 
-# Slider and Button Configuration
+
 num_sliders = 6
 slider_width = 300
 slider_height = 10
@@ -27,14 +30,14 @@ slider_spacing = 60
 button_width = 60
 button_height = 30
 
-# Initial Y-position for sliders and button arrangement
+# Initial Y-position 
 slider_start_y = 120
 button_start_y = 20
 
-# Initialize slider values
+
 slider_values = [50] * num_sliders
 
-# Initialize button states
+
 button_states = [False] * num_sliders
 button_colors = [(0, 0, 255)] * num_sliders
 
@@ -59,6 +62,7 @@ def reset_button_states(selected_index):
             button_colors[i] = (0, 0, 255)
 
 while cap.isOpened():
+    # print(json_data)
     ret, frame = cap.read()
     
     if not ret:
@@ -120,7 +124,7 @@ while cap.isOpened():
                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 1, cv2.LINE_AA)
 
 
-    # Prepare JSON data
+    #  JSON data
     json_data = {}
     for i in range(num_sliders):
         json_data[f'val{i+1}'] = slider_values[i]
@@ -129,18 +133,11 @@ while cap.isOpened():
     mqtt_client.publish(mqtt_topic, json.dumps(json_data))
 
 
-    def returnData():
-        print(json_data)
-        return json_data
-
 
     cv2.imshow("Multiple Sliders and Buttons", frame)
     
     if cv2.waitKey(1) & 0xFF == 27:
         break
-
-
-
 
 cap.release()
 cv2.destroyAllWindows()

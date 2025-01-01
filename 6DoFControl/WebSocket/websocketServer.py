@@ -1,39 +1,53 @@
+import json
 import asyncio
 import websockets
-import json
-import sys
 import os
+import time
 
-Example = {'val1': 50, 'val2': 75, 'val3': 25}
+async def send_json_data(connection, json_file_path):
+    last_modified_time = os.path.getmtime(json_file_path)
+    
+    while True:
+        await asyncio.sleep(1)  
+        
+        current_modified_time = os.path.getmtime(json_file_path)
+        if current_modified_time != last_modified_time:
+            last_modified_time = current_modified_time  
+            
+
+            
+            with open(json_file_path, 'r') as file:
+                content = file.read()
+                if not content:  
+                    print("Error: JSON file is empty.")
+                    await connection.send("Error: JSON file is empty.")
+                    continue
+                    
+           
+                data = json.loads(content)
+                print("JSON data loaded successfully:", data)
+                await connection.send(json.dumps(data))  
+            
 
 
 
+async def handle_connection(connection):
+    json_file_path = 'shared_data.json'
+    
 
+    if not os.path.exists(json_file_path):
+        print(f"File not found: {json_file_path}")
+        await connection.send("Error: JSON file not found.")
+        return
+        
+    await send_json_data(connection, json_file_path)
+        
+   
 
-
-async def handle_connection(websocket):
-    print("Client connected")
-    try:
-        while True:
-
-            data_to_send = json.dumps(Example)
-            await websocket.send(data_to_send)
-            print(f"Sent data: {data_to_send}")
-            # try:
-            #     message = await asyncio.wait_for(websocket.recv(), timeout=5)
-            #     print(f"Received from client: {message}")
-            # except asyncio.TimeoutError:
-            #     print("No message received from the client within the timeout period.")
-            await asyncio.sleep(1)
-
-    except websockets.ConnectionClosed as e:
-            print(f"Client disconnected: {e}")
-
-async def ConnectwebSocket():
+async def websocket_server():
     server = await websockets.serve(handle_connection, "localhost", 8765)
     print("WebSocket server is running on ws://localhost:8765")
     await server.wait_closed()
 
-
-# if __name__ == "__main__":
-#     asyncio.run(ConnectwebSocket())
+if __name__ == "__main__":
+    asyncio.run(websocket_server())
