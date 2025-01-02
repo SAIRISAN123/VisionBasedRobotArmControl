@@ -1,6 +1,7 @@
 #include <WiFi.h>
 #include <PubSubClient.h>
 #include <ArduinoJson.h> // Include the ArduinoJson library for parsing JSON
+#include <ESP32Servo.h>  // Include the ESP32Servo library for servo control
 
 const char* ssid = "Nov";                   // Your WiFi SSID
 const char* password = "sai012345";         // Your WiFi Password
@@ -11,7 +12,8 @@ const char* mqtt_topic = "slider_values";
 WiFiClient espClient;
 PubSubClient client(espClient);
 
-const int pwmPins[] = {5, 18, 19, 21, 22, 23};  // Example PWM pins for controlling outputs
+const int pwmPins[] = {5, 18, 19, 21, 22, 23};  // Example PWM pins for controlling servos
+Servo servos[6];                               // Array to hold 6 Servo objects
 
 void setup() {
   Serial.begin(115200);  // Start Serial communication with the computer
@@ -32,10 +34,10 @@ void setup() {
   // Connect to MQTT broker
   reconnect();
 
-  // Initialize PWM pins
+  // Attach servos to their respective pins
   for (int i = 0; i < 6; i++) {
-    pinMode(pwmPins[i], OUTPUT);
-    analogWrite(pwmPins[i], 0);  // Set initial PWM value to 0
+    servos[i].attach(pwmPins[i]);  // Attach servo to the respective pin
+    servos[i].write(0);            // Set initial position to 0 degrees
   }
 }
 
@@ -59,8 +61,6 @@ void callback(char* topic, byte* payload, unsigned int length) {
     return;
   }
 
-  
-
   // Get the slider values from the JSON
   int val1 = doc["val1"];
   int val2 = doc["val2"];
@@ -69,14 +69,13 @@ void callback(char* topic, byte* payload, unsigned int length) {
   int val5 = doc["val5"];
   int val6 = doc["val6"];
 
-
-  // Set PWM values based on the slider values (map 0-100 to 0-255 for PWM)
-  analogWrite(pwmPins[0], map(val1, 0, 100, 0, 255));
-  analogWrite(pwmPins[1], map(val2, 0, 100, 0, 255));
-  analogWrite(pwmPins[2], map(val3, 0, 100, 0, 255));
-  analogWrite(pwmPins[3], map(val4, 0, 100, 0, 255));
-  analogWrite(pwmPins[4], map(val5, 0, 100, 0, 255));
-  analogWrite(pwmPins[5], map(val6, 0, 100, 0, 255));
+  // Map the slider values (0-100) to servo angles (0-180)
+  servos[0].write(map(val1, 0, 100, 0, 180));
+  servos[1].write(map(val2, 0, 100, 0, 180));
+  servos[2].write(map(val3, 0, 100, 0, 180));
+  servos[3].write(map(val4, 0, 100, 0, 180));
+  servos[4].write(map(val5, 0, 100, 0, 180));
+  servos[5].write(map(val6, 0, 100, 0, 180));
 }
 
 void reconnect() {
@@ -89,7 +88,7 @@ void reconnect() {
     } else {
       Serial.print("failed, rc=");
       Serial.print(client.state());
-      Serial.println(" try again in 1 second");A
+      Serial.println(" try again in 1 second");
       delay(1000);
     }
   }
