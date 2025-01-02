@@ -267,6 +267,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 29985761569501147, guid: d53cbc30fb3cb6642ae8094e5f1a7297, type: 3}
   m_PrefabInstance: {fileID: 58178023}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &146002087
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 146002089}
+  - component: {fileID: 146002088}
+  m_Layer: 0
+  m_Name: WebSocketClient
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &146002088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146002087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86152ccbbc4192f4a9f6ebd5a6c4d3ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _connection: {fileID: 0}
+  _url: ws://localhost:8765
+--- !u!4 &146002089
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146002087}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -646.43994, y: 935.51495, z: 1053.4729}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &234027890
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5466,3 +5512,4 @@ SceneRoots:
   - {fileID: 3517548160771737733}
   - {fileID: 3840488935890538333}
   - {fileID: 730480817}
+  - {fileID: 146002089}
