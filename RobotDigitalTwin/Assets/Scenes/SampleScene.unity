@@ -1366,7 +1366,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 730480817}
     m_Modifications:
     - target: {fileID: 4959556828101449904, guid: ed5da397b5351fe4982a91fc53102553, type: 3}
       propertyPath: m_LocalScale.x
@@ -1570,6 +1570,7 @@ Transform:
   - {fileID: 1090527045}
   - {fileID: 1252049876}
   - {fileID: 612945600}
+  - {fileID: 693322365}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &773410129
@@ -5465,4 +5466,3 @@ SceneRoots:
   - {fileID: 3517548160771737733}
   - {fileID: 3840488935890538333}
   - {fileID: 730480817}
-  - {fileID: 693322364}

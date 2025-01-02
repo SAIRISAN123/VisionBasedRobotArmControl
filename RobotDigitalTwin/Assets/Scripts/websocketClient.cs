@@ -1,21 +1,34 @@
 using System;
-using System.Collections;
 using UnityEngine;
 using MikeSchweitzer.WebSocket;
+using System.Collections.Generic;
+
 
 public class WebSocketClient : MonoBehaviour
 {
-    // Reference to the WebSocketConnection component
+    
     public WebSocketConnection _connection;
 
+
+    public class Message
+    {
+        public string a;       
+        public int[] b;      
+        public List<int[]> c; 
+        public int d;         
+        public string e;    
+    }     // defined message structure
+
+
+
     // URL of the WebSocket server
-    public string _url = "wss://ws.postman-echo.com/raw"; // Replace with your WebSocket server URL
+    public string _url = "ws://localhost:8765"; 
+
 
     private void Awake()
     {
         if (_connection == null)
         {
-            // Add WebSocketConnection component dynamically if not already added
             _connection = gameObject.AddComponent<WebSocketConnection>();
         }
 
@@ -44,7 +57,7 @@ public class WebSocketClient : MonoBehaviour
         _connection.DesiredConfig = new WebSocketConfig
         {
             Url = _url,
-            PingInterval = TimeSpan.FromSeconds(30), // Optional: Ping every 30 seconds
+            PingInterval = TimeSpan.FromSeconds(3), // Optional: Ping every 3 seconds
             PingMessage = new WebSocketMessage("ping") // Optional: Custom ping message
         };
 
@@ -60,25 +73,29 @@ public class WebSocketClient : MonoBehaviour
         Debug.Log("Disconnected from WebSocket server.");
     }
 
-    // Handle incoming messages
+
     private void OnMessageReceived(WebSocketConnection connection, WebSocketMessage message)
     {
-        Debug.Log($"Message received: {message.String}");
+        Debug.Log($"Message received: {message.String}");        // print message to console
+        //agv0Message = message.String;
+        // MSGTest = JsonUtility.FromJson<AGVMessage>(message.String);   // string to json
+       
     }
 
-    // Handle errors
+
+
     private void OnErrorMessageReceived(WebSocketConnection connection, string errorMessage)
     {
-        Debug.LogError($"WebSocket error: {errorMessage}");
+        //Debug.LogError($"WebSocket error: {errorMessage}");
     }
 
     // Handle state changes (e.g., connected, disconnected)
     private void OnStateChanged(WebSocketConnection connection, WebSocketState oldState, WebSocketState newState)
     {
-        Debug.Log($"WebSocket state changed from {oldState} to {newState}");
+        //Debug.Log($"WebSocket state changed from {oldState} to {newState}");
     }
 
-    // // Example: Sending a message to the WebSocket server
+    // // Example: Sending a message to the WebSocket server                  
     // public void SendMessageToServer(string message)
     // {
     //     if (_connection.State == WebSocketState.Connected)
