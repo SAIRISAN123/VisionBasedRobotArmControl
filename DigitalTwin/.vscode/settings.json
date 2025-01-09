@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "FYP Testings.sln"
+    "dotnet.defaultSolution": "DigitalTwin.sln"
 }
