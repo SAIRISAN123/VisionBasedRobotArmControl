@@ -1,14 +1,14 @@
 import paho.mqtt.client as mqtt
 import json
 
-BROKER = "broker.hivemq.com"
-PORT = 1883
+BROKER = "localhost"  #"broker.hivemq.com"
+PORT = 1885
 TOPIC = "slider_values"
 client = mqtt.Client()
 
 def on_connect(client, userdata, flags, rc):
     if rc == 0:
-        print("Connected to HiveMQ broker!")
+        print("Connected to broker!")
         client.subscribe(TOPIC)
         print(f"Subscribed to topic: {TOPIC}")
     else:
