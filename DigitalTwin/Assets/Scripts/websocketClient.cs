@@ -8,6 +8,9 @@ public class WebSocketClient : MonoBehaviour
     // Reference to the WebSocketConnection component
     public WebSocketConnection _connection;
 
+
+    public string MessageReceived="";
+
     // URL of the WebSocket server
     public string _url = "wss://ws.postman-echo.com/raw"; // Replace with your WebSocket server URL
 
@@ -63,7 +66,8 @@ public class WebSocketClient : MonoBehaviour
     // Handle incoming messages
     private void OnMessageReceived(WebSocketConnection connection, WebSocketMessage message)
     {
-        Debug.Log($"Message received: {message.String}");
+        // Debug.Log($"Message received: {message.String}");
+        MessageReceived = message.String;
     }
 
     // Handle errors
