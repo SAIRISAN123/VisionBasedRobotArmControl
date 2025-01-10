@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 98de057676ed36749aecc1fe92c7c308
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 140365
+  packageName: Easy Loading Screen
+  packageVersion: 1.0
+  assetPath: Assets/EasyLoadingScreen/Scripts/RotateBar.cs
+  uploadId: 295604

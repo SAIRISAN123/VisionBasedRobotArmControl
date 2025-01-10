@@ -24,5 +24,14 @@ A multidisciplinary project combining Robotics, IoT, Digital Twin Technology, Em
 - **NodeMCU**: Microcontroller for servo control.
 - **Servo Motors**: Servo motors for arm movement.
 
+## Architectures
+### Hardware Architecture
+![Hardware Architecture](https://github.com/SAIRISAN123/VisionBasedRobotArmControl/blob/Develop/ReadMeResources/Slide1.PNG)
+
+### Network Architecture
+![Architecture](https://github.com/SAIRISAN123/VisionBasedRobotArmControl/blob/Develop/ReadMeResources/Slide2.PNG)
+
+
+
 
 

@@ -38,9 +38,19 @@ async def handle_connection(connection):
     await send_json_data(connection, json_file_path, last_data)
         
 async def websocket_server():
-    server = await websockets.serve(handle_connection, "localhost", 8765)
+    #server = await websockets.serve(handle_connection, "localhost", 8765)
+    server = await websockets.serve(handle_connection, "0.0.0.0", 8765)
     print("WebSocket server is running on ws://localhost:8765")
     await server.wait_closed()
 
 if __name__ == "__main__":
     asyncio.run(websocket_server())
+
+
+
+
+
+
+
+
+
