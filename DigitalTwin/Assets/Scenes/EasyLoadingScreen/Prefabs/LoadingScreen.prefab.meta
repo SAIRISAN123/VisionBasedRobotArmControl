@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5ebad8a41bbacbe419403ab6a0c52078
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 140365
+  packageName: Easy Loading Screen
+  packageVersion: 1.0
+  assetPath: Assets/EasyLoadingScreen/Prefabs/LoadingScreen.prefab
+  uploadId: 295604

@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  mqtt-broker:
+    image: eclipse-mosquitto:latest
+    container_name: mqtt-broker-robotArm
+    ports:
+      - "1885:1883" # MQTT port
+      - "9001:9001" # WebSocket port (optional)
+    volumes:
+      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf

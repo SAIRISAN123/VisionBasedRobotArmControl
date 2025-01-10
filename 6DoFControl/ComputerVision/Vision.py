@@ -42,8 +42,8 @@ button_states = [False] * num_sliders
 button_colors = [(0, 0, 255)] * num_sliders
 
 
-mqtt_broker = "broker.hivemq.com"  
-mqtt_port = 1883
+mqtt_broker = "192.168.43.177" #localhost" #"broker.hivemq.com"  
+mqtt_port = 1885
 mqtt_topic = "slider_values"  
 mqtt_client = mqtt.Client()
 mqtt_client.connect(mqtt_broker, mqtt_port)
