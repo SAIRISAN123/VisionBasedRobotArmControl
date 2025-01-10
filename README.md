@@ -25,10 +25,10 @@ A multidisciplinary project combining Robotics, IoT, Digital Twin Technology, Em
 - **Servo Motors**: Servo motors for arm movement.
 
 ## Architectures
-### WebSocket Architecture
+### Hardware Architecture
 ![Hardware Architecture](https://github.com/SAIRISAN123/VisionBasedRobotArmControl/blob/Develop/ReadMeResources/Slide1.PNG)
 
-### MQTT Communication Architecture
+### Hardware Architecture
 ![Architecture](https://github.com/SAIRISAN123/VisionBasedRobotArmControl/blob/Develop/ReadMeResources/Slide2.PNG)
 
 
