@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: d09316216274ac94bbbbdc495123c59f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 140365
+  packageName: Easy Loading Screen
+  packageVersion: 1.0
+  assetPath: Assets/EasyLoadingScreen/Scripts/LoadingScreenBarSystem.cs
+  uploadId: 295604
