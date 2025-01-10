@@ -26,10 +26,10 @@ A multidisciplinary project combining Robotics, IoT, Digital Twin Technology, Em
 
 ## Architectures
 ### WebSocket Architecture
-![Hardware Architecture](https://github.com/your-username/your-repository/blob/main/path-to-websocket-architecture.png?raw=true)
+![Hardware Architecture](https://github.com/SAIRISAN123/VisionBasedRobotArmControl/blob/Develop/ReadMeResources/Slide1.PNG)
 
 ### MQTT Communication Architecture
-![Architecture](https://github.com/your-username/your-repository/blob/main/path-to-mqtt-architecture.png?raw=true)
+![Architecture](https://github.com/SAIRISAN123/VisionBasedRobotArmControl/blob/Develop/ReadMeResources/Slide2.PNG)
 
 
 
