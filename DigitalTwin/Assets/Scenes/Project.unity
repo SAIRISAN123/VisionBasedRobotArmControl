@@ -1119,7 +1119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _connection: {fileID: 0}
   MessageReceived: 
-  _url: ws://localhost:8765
+  _url: ws://192.168.43.177:8765
 --- !u!4 &275687135
 Transform:
   m_ObjectHideFlags: 0

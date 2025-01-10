@@ -1,7 +1,7 @@
 import paho.mqtt.client as mqtt
 import json
 
-BROKER = "localhost"  #"broker.hivemq.com"
+BROKER =   "192.168.43.177"  #"localhost"  #"broker.hivemq.com"
 PORT = 1885
 TOPIC = "slider_values"
 client = mqtt.Client()
