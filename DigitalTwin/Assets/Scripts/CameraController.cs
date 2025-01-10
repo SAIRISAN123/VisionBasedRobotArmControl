@@ -3,7 +3,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public Transform fixedView; // The fixed camera view position and rotation
-    private bool isFixedView = true; // Tracks if the camera is in fixed mode
+    private bool isFixedView = false; // Start with free move mode
 
     public float moveSpeed = 5f; // Speed of camera movement in free mode
     public float scrollSpeed = 2f; // Speed adjustment with scroll wheel
@@ -18,12 +18,13 @@ public class CameraController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        // Start at the fixed view
-        if (fixedView != null)
+        if (!isFixedView && Camera.main != null)
         {
-            SetToFixedView();
+            // Set initial rotation values based on current camera rotation
+            rotationX = Camera.main.transform.eulerAngles.x;
+            rotationY = Camera.main.transform.eulerAngles.y;
         }
-        else
+        else if (fixedView != null)
         {
             Debug.LogError("Fixed view is not assigned.");
         }

@@ -1869,8 +1869,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 415600082}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.08821805, y: 0.4801253, z: -0.048606627, w: 0.87139815}
-  m_LocalPosition: {x: -6.07, y: 1.17, z: -4.88}
+  m_LocalRotation: {x: 0.02000489, y: -0.955914, z: 0.06670162, w: 0.28527033}
+  m_LocalPosition: {x: 2.5544035, y: 2.2431338, z: 3.8246138}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2988,8 +2988,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Space Bar - Fixed View/ Free Move View\n\n W - Forward\n A  - Left\n S 
-    - Backward\n D  - Right\n\n  1 - Move to Defalt View"
+  m_text: "Space Bar - Fixed View/ Free Move View\n\n W      -   Forward\n A      
+    -   Left\n S       -   Backward\n D       -   Right\n scroll -   Adjust Movment
+    speed\n key 1  -   Move to Defalt View"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
