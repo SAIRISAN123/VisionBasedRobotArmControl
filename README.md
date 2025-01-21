@@ -26,10 +26,10 @@ A multidisciplinary project combining Robotics, IoT, Digital Twin Technology, Em
 
 ## Architectures
 ### Hardware Architecture
-![Hardware Architecture](ReadMeResources\Slide1.PNG)
+![Hardware Architecture](https://github.com/SAIRISAN123/VisionBasedRobotArmControl/blob/main/ReadMeResources/Slide1.PNG)
 
 ### Network Architecture
-![Architecture](ReadMeResources\Slide2.PNG)
+![Architecture](https://github.com/SAIRISAN123/VisionBasedRobotArmControl/blob/main/ReadMeResources/Slide2.PNG)
 
 
 
