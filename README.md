@@ -31,6 +31,12 @@ A multidisciplinary project combining Robotics, IoT, Digital Twin Technology, Em
 ### Network Architecture
 ![Architecture](https://github.com/SAIRISAN123/VisionBasedRobotArmControl/blob/main/ReadMeResources/Slide2.PNG)
 
+### Physical Robot
+![Architecture](https://github.com/SAIRISAN123/VisionBasedRobotArmControl/blob/main/ReadMeResources/physical%20Arm.png)
+
+### Digital Twin
+![Architecture](https://github.com/SAIRISAN123/VisionBasedRobotArmControl/blob/main/ReadMeResources/Digital%20Twin%20Arm.png)
+
 
 
 
